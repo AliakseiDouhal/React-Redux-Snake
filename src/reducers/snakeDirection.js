@@ -1,4 +1,4 @@
-let init = ['DOWN'];
+let init = 'DOWN';
 
 export default function snakeDirection(state = init, action) {
     switch (action.type) {

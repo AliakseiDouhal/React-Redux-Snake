@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import snakeDirection from './snakeDirection'
+import snakeDirection from './snakeDirection';
+import snakeCoords from './snakeCoords';
 
 const rootReducer = combineReducers({
-    snakeDirection
+    snakeDirection,
+    snakeCoords
 
 });
 

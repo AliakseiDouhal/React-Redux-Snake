@@ -1,4 +1,10 @@
 let directionMotion = function (event, currentDirection) {
+    function actionDirection(direction) {
+        return {
+            type:'SET_DIRECTION',
+            payload: direction
+        };
+    }
 
     switch(event.keyCode) {
         case 65: // A key
@@ -6,37 +12,28 @@ let directionMotion = function (event, currentDirection) {
             // make sure we're not trying to move into the snake's body
             // or move outside the boundaries
             if(currentDirection !== 'RIGHT') {
-                return {
-                    type:'SET_DIRECTION',
-                    payload: 'LEFT'
-                };
+                return actionDirection('LEFT');
             }
             break;
         case 68: // D key
         case 39: // right arrow
             if(currentDirection !== 'LEFT' ) {
-                return {
-                    type:'SET_DIRECTION',
-                    payload: 'RIGHT'
-                };
+                return actionDirection('RIGHT');
+
             }
             break;
         case 83: // S key
         case 40: // down arrow
             if(currentDirection !== 'UP') {
-                return {
-                    type:'SET_DIRECTION',
-                    payload: 'DOWN'
-                };
+                return actionDirection('DOWN');
+
             }
             break;
         case 87: // W key
         case 38: // up arrow
             if(currentDirection !== 'DOWN') {
-                return {
-                    type:'SET_DIRECTION',
-                    payload: 'UP'
-                };
+                return actionDirection('UP');
+
             }
             break;
         /*case 32: // space
@@ -48,6 +45,21 @@ let directionMotion = function (event, currentDirection) {
             }, GAME_SPEED);
             break;*/
     }
+    return actionDirection(currentDirection);
 };
 
-export default {directionMotion};
+let addSnakeCoords = function (coords) {
+
+
+};
+
+let changeSnakeCoords = function (newCoords) {
+    return {
+        type: 'CHANGE_COORDS',
+        payload: newCoords
+    }
+
+
+};
+
+export default {directionMotion, addSnakeCoords, changeSnakeCoords};

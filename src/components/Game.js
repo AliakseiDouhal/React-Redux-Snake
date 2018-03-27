@@ -6,6 +6,7 @@ import Board from './Board'
 import Snake from './Snake'
 
 import '../styles/game.css'
+import snakeDirection from "../reducers/snakeDirection";
 
 class Game extends Component {
 
@@ -15,7 +16,7 @@ class Game extends Component {
 
     setDirection () {
         document.addEventListener('keydown', e => {
-            return this.props.directionMotion(e, this.props.snakeDirection[0]);
+            return this.props.directionMotion(e, this.props.snakeDirection);
         })
     }
 
@@ -23,7 +24,11 @@ class Game extends Component {
     return (
       <div className="game-wrapper" >
           <Board />
-          <Snake/>
+          <Snake snakeDirection = {this.props.snakeDirection}
+                 addSnakePart = {this.props.addSnakeCoords}
+                 snakeCoords = {this.props.snakeCoords}
+                 motionCoords = {this.props.changeSnakeCoords}
+          />
       </div>
     );
     }
@@ -31,7 +36,8 @@ class Game extends Component {
 
 export default connect (
     state =>  ({
-        snakeDirection: state.snakeDirection
+        snakeDirection: state.snakeDirection,
+        snakeCoords: state.snakeCoords
     }),
     actions
 )(Game);
