@@ -6,7 +6,7 @@ export default class Board extends Component{
 
     render() {
         let board = [];
-        for (let x=0; x < 20; x++) {
+        for (let x = 0; x < 20; x++) {
             board[x] = [];
             for (let y = 0; y < 20; y++) {
                 board[x][y] = '';

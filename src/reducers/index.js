@@ -2,12 +2,30 @@ import { combineReducers } from 'redux';
 
 import snakeDirection from './snakeDirection';
 import snakeCoords from './snakeCoords';
+import appleCoords from './appleCoords';
+import gameStatus from './gameStatus'
 
-const rootReducer = combineReducers({
+/*const rootReducer = combineReducers({
     snakeDirection,
-    snakeCoords
+    snakeCoords,
+    appleCoords,
+    gameStatus
+
+});*/
+
+const appReducers = combineReducers({
+    snakeCoords,
+    appleCoords,
+    gameStatus,
+    snakeDirection
 
 });
 
-export default rootReducer;
+const rootReducer = (state, action) => {
+    if (action.type === 'RESET_GAME'){
+        state = undefined;
+    }
+    return appReducers(state, action)
+};
 
+export default rootReducer;

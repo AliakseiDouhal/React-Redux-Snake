@@ -8,37 +8,32 @@ export default class Snake extends Component{
 
 
     componentDidMount() {
-        setInterval(()=> this.motionSnake(),500);
-/*
-        this.motionSnake();
-*/
-    }
-
-    addNewPartSnake () {
-        /*передаю последний блок змейки с ее координатами*/
-        return this.props.addSnakePart()
+        setInterval(()=> this.motionSnake(),100);
     }
 
     motionSnake () {
-        let snake = this.props.snakeCoords;
-        for (let i = snake.length - 1; i > 0; i--) {
-            snake[i] = snake[i - 1]
-        }
-        let head = snake[0];
-        switch (this.props.snakeDirection) {
-            case ('DOWN'):
-                head.y += 20;
-                console.log(snake);
-                return this.props.motionCoords(snake);
-            case ('UP'):
-                head.y -= 20;
-                return this.props.motionCoords(snake);
-            case ('LEFT'):
-                head.x -= 20;
-                return this.props.motionCoords(snake);
-            case ('RIGHT'):
-                head.x += 20;
-                return this.props.motionCoords(snake);
+        if(this.props.gameStatus.isGame) {
+            let snake = this.props.snakeCoords;
+            let head = snake[0];
+            for (let i = snake.length - 1; i > 0; i--) {
+                snake[i].x = snake[i - 1].x;
+                snake[i].y = snake[i - 1].y;
+            }
+            switch (this.props.snakeDirection) {
+                case ('DOWN'):
+                    head.y += 1;
+                    console.log(snake);
+                    return this.props.motionCoords(snake);
+                case ('UP'):
+                    head.y -= 1;
+                    return this.props.motionCoords(snake);
+                case ('LEFT'):
+                    head.x -= 1;
+                    return this.props.motionCoords(snake);
+                case ('RIGHT'):
+                    head.x += 1;
+                    return this.props.motionCoords(snake);
+            }
         }
 
     }
@@ -47,7 +42,7 @@ export default class Snake extends Component{
             <div>
                 {
                     this.props.snakeCoords.map((part, index) =>
-                        <div key={index} style={{left: part.x + 'px', top: part.y + 'px',}} className='snake'/>)
+                        <div key={index} style={{left: part.x*20 + 'px', top: part.y*20 + 'px'}} className='snake'/>)
                 }
             </div>
 
