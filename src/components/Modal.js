@@ -16,7 +16,7 @@ export default class Modal extends Component {
     render() {
         return ReactDOM.createPortal(
             <div className="modal">
-                <button className="modal__close-button" onClick={this.props.resetGame}>Закрыть</button>
+                <button className="modal__close-button" onClick={this.props.resetGame}>Restart</button>
                 {this.props.children}
             </div>,
             this.root

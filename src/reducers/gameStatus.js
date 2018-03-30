@@ -11,6 +11,11 @@ export default function gameStatus(state = init, action) {
                 isGame: false,
                 game_over: true
             };
+        case ('INCREMENT_SCORE'):
+            return {
+                ...state,
+                score: state.score + 1
+            };
         default:
             return state
     }

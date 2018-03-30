@@ -23,7 +23,7 @@ const appReducers = combineReducers({
 
 const rootReducer = (state, action) => {
     if (action.type === 'RESET_GAME'){
-        state = undefined;
+        state = {};
     }
     return appReducers(state, action)
 };

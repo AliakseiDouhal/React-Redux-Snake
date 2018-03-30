@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { createSelector } from 'reselect'
 import { connect } from 'react-redux';
 import actions from '../actions';
 
@@ -33,6 +34,7 @@ class Game extends Component {
         if (this.props.appleCoords.x === head.x && this.props.appleCoords.y === head.y) {
             this.generateNewApplePosition();
             this.addNewPartSnake();
+            this.props.incrementScore();
         }
     }
 
@@ -54,7 +56,7 @@ class Game extends Component {
 
     checkSnakeOutside () {
         let head = this.props.snakeCoords[0];
-        return (head.y > 0 && head.y < 20 && head.x > 0 && head.x < 20)
+        return (head.y >= 0 && head.y < 20 && head.x >= 0 && head.x < 20)
 
     }
 
@@ -63,10 +65,11 @@ class Game extends Component {
         <div className="game-wrapper" >
             <Board />
                 <Snake snakeDirection = {this.props.snakeDirection}
-                     addSnakePart = {this.props.addSnakeCoords}
-                     snakeCoords = {this.props.snakeCoords}
-                     motionCoords = {this.props.changeSnakeCoords}
-                     gameStatus = {this.props.gameStatus}
+                        addSnakePart = {this.props.addSnakeCoords}
+                        snakeCoords = {this.props.snakeCoords}
+                        motionCoords = {this.props.changeSnakeCoords}
+                        gameStatus = {this.props.gameStatus}
+                        incrementScore = {this.props.incrementScore}
                 />
             <Apple appleCoords = {this.props.appleCoords}/>
             {
@@ -78,6 +81,12 @@ class Game extends Component {
     }
 }
 
+// const snakeCoords = state => state.snakeCoords.snakeCoords;
+//
+// const snakeCoordsSelector = createSelector(snakeCoords, snakeCoords =>{
+//         return snakeCoords
+//     }
+// );
 export default connect (
     state =>  ({
         snakeDirection: state.snakeDirection,
