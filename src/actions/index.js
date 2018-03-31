@@ -74,13 +74,13 @@ let changeSnakeCoords = function (oldSnake, snakeDirection) {
 /*
     let newSnake = snake.slice(0, snake.length-1);
 */
-    const snake = oldSnake.slice();
+   /* const snake = oldSnake.slice();
+
     const head = snake[0];
     for (let i = snake.length - 1; i > 0; i--) {
         snake[i].x = snake[i - 1].x;
         snake[i].y = snake[i - 1].y;
     }
-
     switch (snakeDirection) {
         case ('DOWN'):
             head.y += 1;
@@ -94,19 +94,31 @@ let changeSnakeCoords = function (oldSnake, snakeDirection) {
         case ('RIGHT'):
             head.x += 1;
             break;
+    }*/
+    let snake = oldSnake.slice(0, oldSnake.length-1);
+    /*обрезаю последнее значение, тем самым по сути выполняя цикл фор, который был раньше*/
+    let head;
+
+    switch (snakeDirection) {
+        case ('DOWN'):
+            head = [{x: snake[0].x, y: snake[0].y + 1}];
+            /*создаю абсолютно новый объект с координатами головы*/
+            break;
+        case ('UP'):
+            head = [{x: snake[0].x, y: snake[0].y - 1}];
+            break;
+        case ('LEFT'):
+            head = [{x: snake[0].x - 1, y: snake[0].y}];
+            break;
+        case ('RIGHT'):
+            head = [{x: snake[0].x + 1, y: snake[0].y}];
+            break;
     }
-/*
-
-    let finishSnake = head.concat(newSnake);
-    console.log(finishSnake);
-
-*/
-
-
-
+    let newSnake = head.concat(snake);
+    /*объеденяю новую голову, с координатами остальных частей*/
     return {
         type: 'CHANGE_COORDS',
-        payload: snake
+        payload: newSnake
     }
 };
 

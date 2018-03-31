@@ -1,3 +1,4 @@
+/*
 import {List} from 'immutable'
 const init = List([
     {x: 2, y: 2},
@@ -9,8 +10,10 @@ const init = List([
 //     return [{x: 2,y: 2},{x: 2,y: 1},{x: 2,y: 0}]
 // }();
 
+/!*
 Object.assign({}, init);
-export default function snakeCoords(state = {...init}, action) {
+*!/
+export default function snakeCoords(state = init, action) {
     console.log(init);
     switch (action.type) {
         case('ADD_NEW_PART'):
@@ -20,6 +23,32 @@ export default function snakeCoords(state = {...init}, action) {
         case('CHANGE_COORDS'):
             debugger;
             return List([...action.payload]);
+
+        default:
+            return state;
+    }
+
+}*/
+
+const init = [
+    {x: 2, y: 2},
+    {x: 2, y: 1},
+    {x: 2, y: 0}
+];
+
+// const initFn = function () {
+//     return [{x: 2,y: 2},{x: 2,y: 1},{x: 2,y: 0}]
+// }();
+
+
+export default function snakeCoords(state = init, action) {
+    console.log(init);
+    switch (action.type) {
+        case('ADD_NEW_PART'):
+            return [...state, action.payload];
+
+        case('CHANGE_COORDS'):
+            return [...action.payload];
 
         default:
             return state;
