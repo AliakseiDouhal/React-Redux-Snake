@@ -7,12 +7,37 @@
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: rgba(192, 192, 192, 0.52);
-    z-index: 100;
+    background-color: rgba(190, 190, 190, 0.88);
+    z-index: 3;
+    flex-direction: column;
 }
 
 .modal .modal__close-button {
-    position: absolute;
-    top: 16px;
-    right: 16px;
+    background-color: transparent;
+    border: solid 3px white;
+    color: white;
+    font-size: 22px;
+    width: 200px;
+    height: 50px;
+    transition: all 300ms ease-in-out;
+
+}
+
+.modal .modal__close-button:hover {
+    background-color: white;
+    border: solid 3px white;
+    color: rgba(190, 190, 190, 0.88);
+    font-size: 22px;
+    width: 200px;
+    height: 50px;
+}
+
+.game_over {
+    font-size: 62px;
+    margin: 10px 0;
+}
+
+.total-score {
+    font-size: 22px;
+    margin: 10px 0 20px;
 }

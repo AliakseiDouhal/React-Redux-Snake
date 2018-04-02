@@ -18,6 +18,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-redux": "^5.0.6"
+    "react-redux": "^5.0.6",
+    "reselect": "^3.0.1"
   }
 }
