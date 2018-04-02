@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
+
 import '../styles/board.css'
 
-
-export default class Board extends Component{
+export default class Board extends Component {
 
     render() {
         let board = [];
@@ -14,14 +14,18 @@ export default class Board extends Component{
         }
         return (
             <div ref="board">
-                { board.map((row,index)=>
+                {board.map((row, index) =>
                     <div key={index} className="row">
                         {
-                            row.map((cell, cellIndex)=> <div key={cellIndex} className='cell'/>)
+                            row.map((cell, cellIndex) => <div key={cellIndex} className='cell'/>)
                         }
 
                     </div>
                 )}
+                {
+                    !this.props.gameStatus.isGame && !this.props.gameStatus.game_over &&
+                    <p className='blink-text'>Press space for a game</p>
+                }
 
             </div>
 

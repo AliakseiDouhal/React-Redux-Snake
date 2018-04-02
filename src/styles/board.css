@@ -4,6 +4,25 @@
     border: solid 1px #f1f1f1;
     box-sizing: border-box;
 }
+
 .row {
     display: flex;
+}
+
+.blink-text {
+    color: black;
+    text-decoration: none;
+    animation: blink-text 1s linear infinite alternate;
+    font-size: 20px;
+}
+
+@keyframes blink-text {
+    0% {
+        color: black;
+    }
+
+    50% {
+        color: red;
+    }
+
 }

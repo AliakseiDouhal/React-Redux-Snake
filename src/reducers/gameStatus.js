@@ -1,5 +1,5 @@
 let init = {
-    isGame: true,
+    isGame: false,
     game_over: false,
     score: 0
 };
@@ -15,6 +15,11 @@ export default function gameStatus(state = init, action) {
             return {
                 ...state,
                 score: state.score + 1
+            };
+        case ('START_GAME'):
+            return {
+                ...state,
+                isGame: true,
             };
         default:
             return state
