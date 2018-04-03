@@ -51,7 +51,6 @@ class Game extends Component {
     }
 
     checkGameOver() {
-        console.log(this.checkSnakeOutside(), this.checkSnakeCollapse());
         if (!this.checkSnakeOutside() || this.checkSnakeCollapse()) {
             return this.props.gameLose();
         }
@@ -73,14 +72,12 @@ class Game extends Component {
     render() {
         return (
             <div className="game-wrapper">
-                <Board gameStatus={this.props.gameStatus}/>
+                <Board />
                 <Score gameStatus={this.props.gameStatus}/>
                 <Snake snakeDirection={this.props.snakeDirection}
-                       addSnakePart={this.props.addSnakeCoords}
                        snakeCoords={this.props.snakeCoords}
                        motionCoords={this.props.changeSnakeCoords}
                        gameStatus={this.props.gameStatus}
-                       incrementScore={this.props.incrementScore}
                 />
                 <Apple appleCoords={this.props.appleCoords}/>
                 {

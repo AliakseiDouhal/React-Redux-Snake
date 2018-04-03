@@ -19,7 +19,7 @@ export default class Snake extends Component {
         return (
             <div>
                 {
-                    this.props.snakeCoords && this.props.snakeCoords.map((part, index) =>
+                    this.props.snakeCoords.map((part, index) =>
                         <div key={index} style={{left: part.x * 20 + 'px', top: part.y * 20 + 'px'}}
                              className='snake'/>)
                 }

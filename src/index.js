@@ -8,7 +8,10 @@ import ReduxThunk from 'redux-thunk';
 import logger from 'redux-logger'
 import rootReducer from './reducers/index';
 
+const {whyDidYouUpdate} = require('why-did-you-update');
+
 const creatStoreWithMiddleware = applyMiddleware(ReduxThunk,logger)(createStore);
+whyDidYouUpdate(React);
 
 ReactDOM.render(
     <Provider store={creatStoreWithMiddleware(rootReducer)}>
@@ -16,5 +19,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
-
-

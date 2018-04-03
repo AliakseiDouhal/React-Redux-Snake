@@ -2,9 +2,13 @@ import React, {Component} from 'react'
 
 import '../styles/board.css'
 
+let count = 0;
+
 export default class Board extends Component {
 
     render() {
+        console.log(`Board render ${++count}`);
+
         let board = [];
         for (let x = 0; x < 20; x++) {
             board[x] = [];
@@ -22,10 +26,10 @@ export default class Board extends Component {
 
                     </div>
                 )}
-                {
+                {/*{
                     !this.props.gameStatus.isGame && !this.props.gameStatus.game_over &&
                     <p className='blink-text'>Press space for a game</p>
-                }
+                }*/}
 
             </div>
 
