@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
 import '../styles/board.css'
 
 let count = 0;
 
-export default class Board extends Component {
+export default class Board extends PureComponent {
 
     render() {
         console.log(`Board render ${++count}`);
@@ -26,10 +26,10 @@ export default class Board extends Component {
 
                     </div>
                 )}
-                {/*{
+                {
                     !this.props.gameStatus.isGame && !this.props.gameStatus.game_over &&
                     <p className='blink-text'>Press space for a game</p>
-                }*/}
+                }
 
             </div>
 

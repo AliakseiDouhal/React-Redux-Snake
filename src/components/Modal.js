@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import ReactDOM from 'react-dom';
 
 import '../styles/modal.css';
 
-export default class Modal extends Component {
+export default class Modal extends PureComponent {
     componentWillMount() {
         this.root = document.createElement('div');
         document.body.appendChild(this.root);

@@ -4,17 +4,6 @@ import '../styles/snake.css'
 
 export default class Snake extends Component {
 
-    componentDidMount() {
-        setInterval(() => this.motionSnake(), 75);
-    }
-
-    motionSnake() {
-        if (this.props.gameStatus.isGame) {
-            const snake = this.props.snakeCoords;
-            return this.props.motionCoords(snake, this.props.snakeDirection);
-        }
-    }
-
     render() {
         return (
             <div>

@@ -15,6 +15,10 @@ import '../styles/game.css'
 class Game extends Component {
 
     componentDidMount() {
+        /*
+                this.snakeSpeed = setInterval(() => this.motionSnake(), 75);
+        */
+
         this.setDirection();
     }
 
@@ -25,8 +29,21 @@ class Game extends Component {
         }
     }
 
+
+    motionSnake() {
+        if (this.props.gameStatus.isGame) {
+            const snake = this.props.snakeCoords;
+            return this.props.changeSnakeCoords(snake, this.props.snakeDirection);
+        }
+    }
+
+
     setDirection() {
         document.addEventListener('keydown', e => {
+            if (e.keyCode === 32 && !this.props.gameStatus.game_over && !this.props.gameStatus.isGame) {
+                this.snakeSpeed = setInterval(() => this.motionSnake(), 50);
+
+            }
             return this.props.directionMotion(e, this.props.snakeDirection, this.props.snakeCoords[0], this.props.gameStatus);
         })
     }
@@ -52,6 +69,7 @@ class Game extends Component {
 
     checkGameOver() {
         if (!this.checkSnakeOutside() || this.checkSnakeCollapse()) {
+            clearInterval(this.snakeSpeed);
             return this.props.gameLose();
         }
     }
@@ -72,13 +90,9 @@ class Game extends Component {
     render() {
         return (
             <div className="game-wrapper">
-                <Board />
+                <Board gameStatus={this.props.gameStatus}/>
                 <Score gameStatus={this.props.gameStatus}/>
-                <Snake snakeDirection={this.props.snakeDirection}
-                       snakeCoords={this.props.snakeCoords}
-                       motionCoords={this.props.changeSnakeCoords}
-                       gameStatus={this.props.gameStatus}
-                />
+                <Snake snakeCoords={this.props.snakeCoords}/>
                 <Apple appleCoords={this.props.appleCoords}/>
                 {
                     this.props.gameStatus.game_over &&

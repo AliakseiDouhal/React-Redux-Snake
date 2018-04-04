@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
 import '../styles/apple.css'
 
 let count = 0;
 
-export default class Apple extends Component {
+export default class Apple extends PureComponent {
 
     render() {
         console.log(`apple render ${++count}`);
