@@ -14,12 +14,13 @@ export default class Modal extends PureComponent {
     }
 
     render() {
+        const { gameStatus, resetGame, children } = this.props;
         return ReactDOM.createPortal(
             <div className="modal">
                 <p className='game_over'>Game Over</p>
-                <p className='total-score'>You score: {this.props.gameStatus.score}</p>
-                <button className="modal__close-button" onClick={this.props.resetGame}>Restart</button>
-                {this.props.children}
+                <p className='total-score'>You score: {gameStatus.score}</p>
+                <button className="modal__close-button" onClick={resetGame}>Restart</button>
+                {children}
             </div>,
             this.root
         );

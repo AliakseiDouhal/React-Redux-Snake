@@ -2,13 +2,9 @@ import React, {PureComponent} from 'react'
 
 import '../styles/board.css'
 
-let count = 0;
-
 export default class Board extends PureComponent {
 
     render() {
-        console.log(`Board render ${++count}`);
-
         let board = [];
         for (let x = 0; x < 20; x++) {
             board[x] = [];
@@ -16,6 +12,7 @@ export default class Board extends PureComponent {
                 board[x][y] = '';
             }
         }
+        const {gameStatus: { isGame, game_over }} = this.props;
         return (
             <div ref="board">
                 {board.map((row, index) =>
@@ -27,7 +24,7 @@ export default class Board extends PureComponent {
                     </div>
                 )}
                 {
-                    !this.props.gameStatus.isGame && !this.props.gameStatus.game_over &&
+                    !isGame && !game_over &&
                     <p className='blink-text'>Press space for a game</p>
                 }
 
@@ -35,5 +32,4 @@ export default class Board extends PureComponent {
 
         )
     }
-
 }

@@ -6,7 +6,7 @@ import Board from './Board';
 import Snake from './Snake';
 import Apple from './Apple';
 import Modal from './Modal';
-import Score from "./Score";
+import Score from './Score';
 
 import {snakeCoordsSelector, appleCoordsSelector, snakeDirectionSelector, gameStatusSelector} from '../selectors/game'
 
@@ -14,31 +14,25 @@ import '../styles/game.css'
 
 class Game extends Component {
 
-    componentDidMount() {
-        /*
-                this.snakeSpeed = setInterval(() => this.motionSnake(), 75);
-        */
-
+    componentDidMount = () => {
         this.setDirection();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         this.checkEatenApple();
         if (this.props.gameStatus.isGame) {
             this.checkGameOver();
         }
     }
 
-
-    motionSnake() {
+    motionSnake = () => {
         if (this.props.gameStatus.isGame) {
             const snake = this.props.snakeCoords;
             return this.props.changeSnakeCoords(snake, this.props.snakeDirection);
         }
     }
 
-
-    setDirection() {
+    setDirection = () => {
         document.addEventListener('keydown', e => {
             if (e.keyCode === 32 && !this.props.gameStatus.game_over && !this.props.gameStatus.isGame) {
                 this.snakeSpeed = setInterval(() => this.motionSnake(), 50);
@@ -48,8 +42,8 @@ class Game extends Component {
         })
     }
 
-    checkEatenApple() {
-        let head = this.props.snakeCoords[0];
+    checkEatenApple = () => {
+        const head = this.props.snakeCoords[0];
         if (this.props.appleCoords.x === head.x && this.props.appleCoords.y === head.y) {
             this.generateNewApplePosition();
             this.addNewPartSnake();
@@ -57,32 +51,31 @@ class Game extends Component {
         }
     }
 
-    addNewPartSnake() {
-        let snake = this.props.snakeCoords;
-        /*передаю последний блок змейки с ее координатами*/
+    addNewPartSnake = () => {
+        const snake = this.props.snakeCoords;
         return this.props.addSnakeCoords(snake[snake.length - 1].x, snake[snake.length - 1].y)
     }
 
-    generateNewApplePosition() {
+    generateNewApplePosition = () => {
         return this.props.changeAppleCoords(this.props.appleCoords);
     }
 
-    checkGameOver() {
+    checkGameOver = () => {
         if (!this.checkSnakeOutside() || this.checkSnakeCollapse()) {
             clearInterval(this.snakeSpeed);
             return this.props.gameLose();
         }
     }
 
-    checkSnakeOutside() {
-        let head = this.props.snakeCoords[0];
+    checkSnakeOutside = () => {
+        const head = this.props.snakeCoords[0];
         return (head.y >= 0 && head.y < 20 && head.x >= 0 && head.x < 20)
 
     }
 
-    checkSnakeCollapse() {
-        let head = {x: this.props.snakeCoords[0].x, y: this.props.snakeCoords[0].y};
-        let snake = this.props.snakeCoords.slice(1);
+    checkSnakeCollapse = () => {
+        const head = {x: this.props.snakeCoords[0].x, y: this.props.snakeCoords[0].y};
+        const snake = this.props.snakeCoords.slice(1);
         return snake.some(snakeBody => JSON.stringify(snakeBody) === JSON.stringify(head));
 
     }
