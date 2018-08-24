@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
 import '../styles/score.css'
 
-export default class Score extends Component {
+export default class Score extends PureComponent {
     render() {
+        const {gameStatus: {score}} = this.props;
         return (
-            <p className='current-score'>Score: {this.props.gameStatus.score}</p>
+            <p className='current-score'>Score: {score}</p>
         )
     }
-
 }
